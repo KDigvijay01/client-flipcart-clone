@@ -4,9 +4,8 @@ import { useSelector } from 'react-redux'
 import CartItems from './CartItems';
 import TotalView from './TotalView';
 import EmptyCart from './EmptyCart';
-import { payUsingPaytm, payUsingStripe } from '../../service/api';
-import { post } from '../../utils/paytm';
 import {loadStripe} from '@stripe/stripe-js';
+import { payUsingStripe } from '../../service/api';
 
 
 const Container= styled(Grid)(({theme})=>({
@@ -38,7 +37,11 @@ const StyledButton=styled(Button)`
     height: 51px;
     color: #fff;
     border-radius: 2px;
-    ${'' /* background: #fff; */}
+    transition: background-color 0.3s; /* Add transition for smooth hover effect */
+
+    &:hover {
+        background-color: #892358; /* Change background color on hover */
+    }
 `
 
 const LeftComponent=styled(Grid)(({theme})=>({
@@ -68,19 +71,6 @@ const Cart = () => {
        if(result.error){
             console.log(result.error)
        }
-
-        // let response=await payUsingPaytm({
-        //     amount: 500, email: "abcd@gmail.com"
-        // })
-        // let information= {
-        //     action: "https://securegw-stage.paytm.in/order/process",
-        //     params: response,
-
-        // }
-        // post(information)
-
-
-
     }
 
 

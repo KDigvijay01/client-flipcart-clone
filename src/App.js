@@ -6,6 +6,8 @@ import DataProvider from './context/DataProvider';
 import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
 import DetailView from './components/details/DetailView';
 import Cart from './components/cart/Cart';
+import PaymentSuccess from './components/payments/PaymentSuccess';
+import PaymentFailed from './components/payments/PaymentFailed';
 
 // const 
 
@@ -13,9 +15,6 @@ import Cart from './components/cart/Cart';
 
 
 function App() {
-
-
-
 
 
   return (
@@ -27,6 +26,8 @@ function App() {
                 <Route path="/" element={<Home/>}/>
                 <Route path="/product/:id" element={<DetailView/>} />
                 <Route path="/cart" element={<Cart/>}/>
+                <Route path="/paymentSuccess" element={<PaymentSuccess/>}/>
+                <Route path="/paymentFailed" element={<PaymentFailed/>}/>
             </Routes>
           </Box>
         </Router>

@@ -5,8 +5,8 @@ import FlashOnIcon from '@mui/icons-material/FlashOn';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addtoCart } from '../../redux/actions/cartActions';
-import { payUsingPaytm } from '../../service/api';
-import { post } from '../../utils/paytm';
+import {loadStripe} from '@stripe/stripe-js';
+import { payUsingStripe } from '../../service/api'
 
 
 const LeftContainer = styled(Box)(({ theme }) => ({
@@ -60,16 +60,21 @@ const ActionItems = ({product}) => {
     }
 
     const handlePayment=async (e)=>{
-        let response=await payUsingPaytm({
-            amount: 500, email: "abcd@gmail.com"
-        })
-        let information= {
-            action: "https://securegw-stage.paytm.in/order/process",
-            params: response,
-
+        e.preventDefault();
+        const stripe= await loadStripe("pk_test_51P8UzfSEkMnQNuodvtEhhPjQx8HmUxolqqkSiMQgPkR29ok3lZTa1H8tHsd9yWokOsaNAKMJGnvkC9PUWgToNkYq00MgdbQzYQ");
+        const data={
+            products: [product]
         }
 
-        post(information)
+       let response= await payUsingStripe(data)
+        console.log("response", response);
+       const result=stripe.redirectToCheckout({
+        sessionId: response.sessionId
+       })
+
+       if(result.error){
+            console.log(result.error)
+       }
     }
 
   return (

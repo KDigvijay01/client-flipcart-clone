@@ -3,7 +3,7 @@ import * as ACTIONTYPES from "../constants/cartConstants";
 
 
 
-// const URL= `https://flipkart-clone-backend-gamma.vercel.app`;
+
 // const URL = `http://localhost:5000`;
 const URL=`https://server-api-ecommerce.vercel.app`;
 

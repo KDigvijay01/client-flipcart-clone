@@ -6,6 +6,7 @@ import axios from "axios";
 
 // const URL=`${window.location.origin}`;
 const URL=`https://server-api-ecommerce.vercel.app`;
+
 export const authenticateSignup=async(data)=>{
     try{
        return await axios.post(`${URL}/signup`, data);
